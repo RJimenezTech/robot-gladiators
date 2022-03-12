@@ -144,29 +144,23 @@ var endGame = function() {
 var shop = function() {
   // ask player what they'd like to do
   var shopOptionPrompt = window.prompt(
-    'Would you like to REFILL your health, UPGRADE your attack, or LEAVE the store? Please enter one "REFILL", "UPGRADE", or "LEAVE" to make a choice.'
+    'Would you like to REFILL your health, UPGRADE your attack, or LEAVE the store? Please enter 1 for REFILL, 2 for UPGRADE, or 3 for LEAVE.'
   );
 
   // use switch case to carry out action
-  switch (shopOptionPrompt) {
-    case 'REFILL':
-    case 'refill':
+  shopOptionPrompt = parseInt(shopOptionPrompt);
+  switch (shopOptionPrompt) {    
+    case 1:
       playerInfo.refillHealth();
       break;
-    case 'UPGRADE':
-    case 'upgrade':
+    case 2:
       playerInfo.upgradeAttack();
       break;
-    case 'LEAVE':
-    case 'leave':
+    case 3:
       window.alert('Leaving the store.');
-
-      // do nothing, so function will end
       break;
     default:
       window.alert('You did not pick a valid option. Try again.');
-
-      // call shop() again to force player to pick a valid option
       shop();
       break;
   }
@@ -204,7 +198,8 @@ var playerInfo = {
     if (this.money >= 7) {
       this.health += 25;
       this.money -= 7;
-      window.alert(this.name + " now has " + this.health + ".");
+      window.alert(this.name + " now has " + this.health + " health.");
+      window.alert(this.name + " now has " + this.money + " money.");
     }
     else {
       window.alert("You don't have enough money!");
@@ -215,6 +210,8 @@ var playerInfo = {
     if (this.money >= 7) {
       this.attack += 6;
       this.money -= 7;
+      window.alert(this.name + " now has " + this.attack + " attack.");
+      window.alert(this.name + " now has " + this.money + " money.");
     }
     else {
       window.alert("You dont't have enough money!");
